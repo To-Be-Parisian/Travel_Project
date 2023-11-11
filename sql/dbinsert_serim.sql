@@ -82,3 +82,12 @@ INSERT INTO travel_period VALUES('11~30일', '12월', 155);
 INSERT INTO travel_period VALUES('31~60일', '12월', 106);
 INSERT INTO travel_period VALUES('61~90일', '12월', 118);
 INSERT INTO travel_period VALUES('91일 이상', '12월', 1212);
+
+
+INSERT INTO travel_amount VALUES('1~3일', 5232.46, 1585.31);
+INSERT INTO travel_amount VALUES('4~7일', 3968.33, 630.93);
+INSERT INTO travel_amount VALUES('8~10일', 3760.28, 396.96);
+INSERT INTO travel_amount VALUES('11~30일', 4578.41, 220.4);
+INSERT INTO travel_amount VALUES('31~60일', 5746.09, 112.55);
+INSERT INTO travel_amount VALUES('61~90일', 6992.24, 79.46);
+INSERT INTO travel_amount VALUES('91일 이상', 10006.38, 50.16);
