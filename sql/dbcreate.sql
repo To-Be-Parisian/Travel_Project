@@ -12,18 +12,18 @@ CREATE TABLE user_input (
     period VARCHAR(255)
 );
 CREATE TABLE travel_info (
+    id Int PRIMARY KEY,
     gender VARCHAR(255),
     age INT,
     country_of_origin VARCHAR(255),
     main_activity VARCHAR(255),
-    visit_duration VARCHAR(255) PRIMARY KEY,
+    visit_duration VARCHAR(255),
     avg_expense_per_person DECIMAL(10, 2),
     avg_expense_per_day DECIMAL(10, 2)
 );
 CREATE TABLE travel_like (
     gender VARCHAR(255),
     age INT,
-    country_of_origin VARCHAR(255),
     visit_location VARCHAR(255) PRIMARY KEY,
     satisfaction_avg DECIMAL(5, 2),
     cnt INT
