@@ -24,7 +24,8 @@ CREATE TABLE travel_info (
 CREATE TABLE travel_like (
     gender VARCHAR(255),
     age INT,
-    visit_location VARCHAR(255) PRIMARY KEY,
+    visit_location VARCHAR(255),
+    PRIMARY KEY (gender, age, visit_location),
     satisfaction_avg DECIMAL(5, 2),
     cnt INT
 );
