@@ -154,12 +154,8 @@ INSERT INTO from_airport VALUES('호주', '인천공항T2', 2);
 INSERT INTO from_airport VALUES('홍콩', '인천공항T2', 5);
 
 INSERT INTO travel_from_act_avg (country_of_origin, main_activity, satisfaction_avg, recommendation_intent_avg)
-SELECT
-    a.country_of_origin,
-    b.main_activity,
-    a.satisfaction_avg,
-    b.recommendation_intent_avg
+SELECT a.country_of_origin, b.main_activity, a.satisfaction_avg, a.recommendation_intent_avg
 FROM
     travel_from_avg a
-JOIN
-    travel_act_avg_like b ON a.country_of_origin = b.country_of_origin;
+CROSS JOIN
+    travel_act_avg_like b
