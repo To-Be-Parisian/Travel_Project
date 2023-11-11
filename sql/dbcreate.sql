@@ -61,7 +61,7 @@ CREATE TABLE travel_period (
 
 -- Travel Like Avg Count Table
 CREATE TABLE travel_like_avg_count (
-    visit_count VARCHAR(255) PRIMARY KEY,
+    visit_count INT PRIMARY KEY,
     recommendation_intent_avg DECIMAL(5, 2),
     satisfaction_avg DECIMAL(5, 2),
     count INT
@@ -95,7 +95,7 @@ CREATE TABLE travel_from_act_avg_like (
 -- From Count Table
 CREATE TABLE from_count (
     country_of_origin VARCHAR(255),
-    visit_count VARCHAR(255),
+    visit_count INT,
     PRIMARY KEY (country_of_origin, visit_count),
     count INT
 );
