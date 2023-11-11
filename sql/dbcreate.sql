@@ -1,6 +1,3 @@
-create database php;
-use php;
-
 CREATE TABLE user (
     ID INT PRIMARY KEY,
     sex VARCHAR(255),
@@ -92,8 +89,8 @@ CREATE TABLE travel_act_avg_like (
 
 -- Travel From Act Avg Like Table
 CREATE TABLE travel_from_act_avg (
-	country_of_origin VARCHAR(255) REFERENCES travel_from_avg(country_of_origin),
-    main_activity VARCHAR(255) REFERENCES travel_act_like(main_activity),
+    country_of_origin VARCHAR(255) REFERENCES travel_from_avg(country_of_origin),
+    main_activity VARCHAR(255) REFERENCES travel_act_avg_like(main_activity),
     PRIMARY KEY (country_of_origin, main_activity),
     satisfaction_avg DECIMAL(5, 2),
     recommendation_intent_avg DECIMAL(5, 2)
