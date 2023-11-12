@@ -76,6 +76,7 @@ $conn->close();
         <canvas id="ageRevisitChart"></canvas>
     </div>
   </flex-body>
+  <h2>Revisit intent based on activity</h2>
     <div class="revisit-activity">
         <canvas id="activityRevisitChart"></canvas>
     </div>

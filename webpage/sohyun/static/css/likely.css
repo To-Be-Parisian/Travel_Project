@@ -7,10 +7,15 @@ flex-body {
   display: flex;
   flex-direction: row;
 }
+flex-body-col {
+
+  display: flex;
+  flex-direction: column;
+}
 
 .satisfaction-chart {
-  width: 700px;
-  height:600px;
+  width: 570px;
+  height:450px;
   margin: 50px;
 }
 
@@ -29,4 +34,18 @@ flex-body {
   width: 1000px;
   height:800px;
   text-align: center;
+}
+body {
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.chart-container {
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
 }
