@@ -1,0 +1,32 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+* {
+  font-family: Pretendard,'Noto Sans KR', sans-serif;
+}
+
+flex-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.satisfaction-chart {
+  width: 700px;
+  height:600px;
+  margin: 50px;
+}
+
+.recommendation-chart {
+  width: 700px;
+  height:600px;
+  margin: 50px;
+}
+.revisit-chart {
+  width: 700px;
+  height:600px;
+  margin: 50px;
+}
+
+.revisit-activity {
+  width: 1000px;
+  height:800px;
+  text-align: center;
+}
