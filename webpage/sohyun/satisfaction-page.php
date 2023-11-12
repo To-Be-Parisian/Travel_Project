@@ -22,6 +22,6 @@
     <?php include './revisit-likely.php'; ?>
     <!-- 만족도에 따른 통계 -->
     <?php include './satisfaction.php'; ?>
-  </divl>
+  </div>
 </body>
 </html>
