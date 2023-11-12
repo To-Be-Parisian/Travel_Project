@@ -6,7 +6,8 @@ body {
 
 /* 네비게이션 바 스타일 */
 nav {
-  background-color: #333;
+  background-color: #2c4035;
+  height: 50px;
 }
 
 nav ul {
