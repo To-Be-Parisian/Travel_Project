@@ -35,8 +35,8 @@ $conn->close();
 <script>
     // 데이터 가공
     var data = <?php echo json_encode($data); ?>;
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const chart = new Chart(ctx, {
+    const ct = document.getElementById('myChart').getContext('2d');
+    const chart = new Chart(ct, {
         type: 'bar',
         data: {
             labels: [...new Set(data.map(item => item.visit_month))], // 중복 제거
@@ -61,20 +61,20 @@ $conn->close();
                 text: '월별 방문 기간별 방문자 수'
             },
             scales: {
-                x: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: '방문 월'
-                    }
-                }],
-                y: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: '방문자 수'
-                    }
-                }]
+              x: [{
+            display: true,
+            scaleLabel: {
+                display: true,
+                labelString: '방문 월'
+            }
+            }],
+              y: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: '방문자 수'
+                  }
+              }]
             }
         }
     });
