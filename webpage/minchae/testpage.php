@@ -11,17 +11,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $visit_duration = $_POST["visit_duration"];
 
         // 데이터베이스에 데이터 삽입
-        $sql = "INSERT INTO user_input (UserID, purpose , period) VALUES ('$ID', '$travel_purpose', '$visit_duration')";
+        $sql = "INSERT INTO user_input (UserID, purpose , period) VALUES ('".$ID."', '".$travel_purpose."', '".$visit_duration."')";
 
         if ($db->query($sql) === TRUE) {
             echo "<script> location.href='./sohyun/home.php';</script>";
         } else {
             echo "오류: " . $sql . "<br>" . $db->error;
         }
-    } else {
-        // User is not logged in, handle accordingly
-        echo '<script> alert("You need login")</script>';
-    }
+    } 
+    
 }
 
 // 데이터베이스 연결 종료
@@ -44,10 +42,7 @@ $db->close();
                 // Get the logged-in user's ID
                 $ID = $_SESSION['user_id'];
                 echo "<input type='hidden' name='ID' value='$ID'>";
-            } else {
-                // User is not logged in, handle accordingly
-                echo '<script> alert("You need login")</script>';
-            }
+            } 
         ?>
         <br>
             <label for="travel_purpose">Travel Purpose: </label>
