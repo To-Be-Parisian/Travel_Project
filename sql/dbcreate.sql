@@ -8,7 +8,7 @@ CREATE TABLE user (
     country VARCHAR(255)
 );
 CREATE TABLE user_input (
-    TestID INT PRIMARY KEY,
+    TestID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT,
     FOREIGN KEY (UserID) REFERENCES user(ID),
     purpose VARCHAR(255),
