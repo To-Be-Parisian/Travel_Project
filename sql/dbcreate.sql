@@ -1,3 +1,6 @@
+create database php;
+use php;
+
 CREATE TABLE user (
     ID INT PRIMARY KEY,
     sex VARCHAR(255),
