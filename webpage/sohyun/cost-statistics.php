@@ -16,8 +16,8 @@
   <h1>Cost Statistics Dashboard</h1>
   <div class = "chart-container">
     <?php include './term-cost.php'; ?>
-
     <?php include './month-statics.php'; ?>
+
   </div>
 </body>
 </html>

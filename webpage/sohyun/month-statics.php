@@ -29,13 +29,22 @@ $conn->close();
 <html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <link href="/static/css/term-cost.css" rel="stylesheet" />
+
+<link href="/static/css/text-style.css" rel="stylesheet" />
 </head>
-<body>
-<canvas id="myChart"></canvas>
+<body> 
+<h2>Expense Based On Day</h2>
+  <center-item>
+  <div class="statics-chart">
+    <canvas id="statics-chart"></canvas>
+  </div>
+  </center-item>
 <script>
     // 데이터 가공
     var data = <?php echo json_encode($data); ?>;
-    const ct = document.getElementById('myChart').getContext('2d');
+    const ct = document.getElementById('statics-chart').getContext('2d');
     const chart = new Chart(ct, {
         type: 'bar',
         data: {
