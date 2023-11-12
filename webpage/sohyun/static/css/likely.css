@@ -8,7 +8,6 @@ flex-body {
   flex-direction: row;
 }
 flex-body-col {
-
   display: flex;
   flex-direction: column;
 }
@@ -35,9 +34,7 @@ flex-body-col {
   height:800px;
   text-align: center;
 }
-body {
-  margin: 20px;
-}
+
 
 h1 {
   text-align: center;
