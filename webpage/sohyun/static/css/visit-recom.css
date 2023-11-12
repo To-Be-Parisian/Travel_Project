@@ -1,0 +1,19 @@
+body {
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+}
+.statics-chart {
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  width: 970px;
+  height:650px;
+} 
+
+center-item {
+  display: flex;
+  justify-content: center;
+}
