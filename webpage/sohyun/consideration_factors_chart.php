@@ -13,9 +13,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// 외국인들의 주요 참여 활동 + 방문 위치 데이터 가져오기
-$sql_travel_act = "SELECT * FROM travel_act_amount";
-$result_travel_act = $conn->query($sql_travel_act);
+// 한국 방문 선택 시 고려요인 데이터 가져오기
+$sql_reason_avg = "SELECT * FROM reason_amount_avg";
+$result_reason_avg = $conn->query($sql_reason_avg);
 
 // 데이터베이스 연결 종료
 $conn->close();
@@ -26,44 +26,46 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Activities and Visit Locations</title>
+    <title>Consideration Factors for Visiting Korea</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="/static/css/text-style.css" rel="stylesheet" />
     <link rel="stylesheet" href="./static/css/home.css">
-    <link href="/static/css/main-activity.css" rel="stylesheet" />
+    <link href="/static/css/consideration.css" rel="stylesheet" />
 </head>
 <body>
- <h1>To Be Parsian</h1>
+<h1>To Be Parsian</h1>
 <?php
         $currentPage = 'satisfaction'; // 현재 페이지 식별자
         include 'nav.php';
     ?>    
-<h1>Main Activities and Visit Locations</h1>
+<h1>Consideration Factors for Visiting Korea</h1>
 <center-item>
-    <div class="statics-chart">
-    <canvas id="travelActChart"></canvas>
-    </div>
+  <div class="statics-chart" >
+    <canvas id="reasonAvgChart" width="400" height="400"></canvas>
+  </div>
 </center-item>
+
 
 <script>
 // 데이터 가공
-var travelActLabels = [];
-var travelActData = [];
+var reasonAvgLabels = [];
+var reasonAvgData = [];
 
 <?php
-while ($row = $result_travel_act->fetch_assoc()) {
-    echo "travelActLabels.push('" . $row['main_activity'] . "');";
-    echo "travelActData.push(" . $row['avg_expense_per_person'] . ");";
+while ($row = $result_reason_avg->fetch_assoc()) {
+    echo "reasonAvgLabels.push('" . $row['factors_for_visiting_korea'] . "');";
+    echo "reasonAvgData.push(" . $row['avg_expense_per_person'] . ");";
 }
 ?>
 
-var travelActCtx = document.getElementById('travelActChart').getContext('2d');
-var travelActChart = new Chart(travelActCtx, {
+// 파이 차트 생성
+var reasonAvgCtx = document.getElementById('reasonAvgChart').getContext('2d');
+var reasonAvgChart = new Chart(reasonAvgCtx, {
     type: 'pie',
     data: {
-        labels: travelActLabels,
+        labels: reasonAvgLabels,
         datasets: [{
-            data: travelActData,
+            data: reasonAvgData,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
