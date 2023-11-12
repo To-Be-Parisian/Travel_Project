@@ -1,0 +1,10 @@
+.statics-chart {
+  width: 970px;
+  height:650px;
+} 
+
+center-item {
+  display: flex;
+  justify-content: center;
+  margin-left: 220px;
+}
