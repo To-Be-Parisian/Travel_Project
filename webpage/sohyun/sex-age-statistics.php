@@ -59,7 +59,7 @@ $conn->close();
         include 'nav.php';
     ?>    
 <flex-body-col>
-
+  <h1>Gender And Age Statistics</h1>
   <h2>Travel Count Based On Gender</h2>
   <div class="statics-chart">
       <canvas id="genderChart"></canvas>
