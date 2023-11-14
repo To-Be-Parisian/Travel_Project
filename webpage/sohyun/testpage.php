@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO user_input (UserID, purpose , period) VALUES ('".$ID."', '".$travel_purpose."', '".$visit_duration."')";
 
         if ($db->query($sql) === TRUE) {
-            header("Location: home.php");
+            echo "<script> location.href='home.php';</script>";
         } else {
             echo "error: " . $sql . "<br>" . $db->error;
         }
@@ -46,7 +46,7 @@ $db->close();
         ?>
         <br>
             <label for="travel_purpose">Travel Purpose: </label>
-            <select name="travel_purpose" required>
+            <select name="travel_purpose" id = "travel_purpose" required>
                 <option value="Culinary Tourism">Culinary Tourism</option>
                 <option value="Shopping">Shopping</option>
                 <option value="Enjoying Natural Scenery">Scenic Views</option>
@@ -67,7 +67,7 @@ $db->close();
             </select>
             <br>
             <label for="visit_duration">Visit Duration: </label>
-            <select name="visit_duration" required>
+            <select name="visit_duration" id = "visit_duration" required>
                 <option value="1~3days">1~3 days</option>
                 <option value="4~7days">4~7 days</option>
                 <option value="8~10days">8~10 days</option>
