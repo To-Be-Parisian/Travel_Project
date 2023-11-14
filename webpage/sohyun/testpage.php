@@ -1,8 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "thgus201";
-$dbname = "php";
+include "./db.php"; // 데이터베이스 연결 설정 파일
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         if ($conn->query($sql) === TRUE) {
-            echo "<script> location.href='cost-prediction.php';</script>";
+            echo "<script> location.href='home.php';</script>";
         } else {
             echo "error: " . $sql . "<br>" . $db->error;
         }
