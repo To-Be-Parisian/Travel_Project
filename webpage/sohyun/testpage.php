@@ -1,6 +1,17 @@
 <?php
-include "./db.php"; // 데이터베이스 연결 설정 파일
+$servername = "localhost";
+$username = "root";
+$password = "thgus201";
+$dbname = "php";
 
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+// 데이터베이스 연결 설정 파일
 // 폼이 제출되었을 때 처리
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the user is logged in
@@ -13,17 +24,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // 데이터베이스에 데이터 삽입
         $sql = "INSERT INTO user_input (UserID, purpose , period) VALUES ('".$ID."', '".$travel_purpose."', '".$visit_duration."')";
 
-        if ($db->query($sql) === TRUE) {
-            echo "<script> location.href='home.php';</script>";
+        if ($conn->query($sql) === TRUE) {
+            echo "<script> location.href='cost-prediction.php';</script>";
         } else {
             echo "error: " . $sql . "<br>" . $db->error;
         }
-    } 
+    } else {
+        echo "User not logged in"; // 디버깅용 메시지
+    }
     
 }
 
 // 데이터베이스 연결 종료
-$db->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
