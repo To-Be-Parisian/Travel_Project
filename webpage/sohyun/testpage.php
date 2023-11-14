@@ -15,14 +15,15 @@ if ($conn->connect_error) {
 // 폼이 제출되었을 때 처리
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the user is logged in
-    if (isset($_SESSION['user_id'])) {
+    if (isset($_SESSION['userid'])) {
         // Get the logged-in user's ID
-        $ID = $_SESSION['user_id'];
+        $ID = $_SESSION['userid'];
         $travel_purpose = $_POST["travel_purpose"];
         $visit_duration = $_POST["visit_duration"];
 
         // 데이터베이스에 데이터 삽입
-        $sql = "INSERT INTO user_input (UserID, purpose , period) VALUES ('".$ID."', '".$travel_purpose."', '".$visit_duration."')";
+        $sql = "INSERT INTO user_input (UserID, purpose, period) VALUES ('".$_SESSION['userid']."', '".$travel_purpose."', '".$visit_duration."')";
+
 
         if ($conn->query($sql) === TRUE) {
             echo "<script> location.href='cost-prediction.php';</script>";
@@ -51,9 +52,9 @@ $conn->close();
         <!-- 로그인된 사용자의 ID를 사용 -->
         <?php
             // Check if the user is logged in
-            if (isset($_SESSION['user_id'])) {
+            if (isset($_SESSION['userid'])) {
                 // Get the logged-in user's ID
-                $ID = $_SESSION['user_id'];
+                $ID = $_SESSION['userid'];
                 echo "<input type='hidden' name='ID' value='$ID'>";
             } 
         ?>
@@ -72,12 +73,12 @@ $conn->close();
                 <option value="Participating in Local Festivals">Participate in Local Festivals</option>
                 <option value="Entertainment/Recreation">Entertainment/Leisure</option>
                 <option value="Beauty/Medical Tourism">Beauty/Medical Tourism</option>
-                <option value="Sports/Recreation Watching and Participation Business Activities">Sports/Recreation</option>
-                <option value="Sports/Recreation Watching and Participation Business Activities">Business Activities</option>
+                <option value="Sports/Recreation">Sports/Recreation</option>
+                <option value="Business Activities">Business Activities</option>
                 <option value="Training/Education/Research">Training/Education/Research</option>
                 <option value="Inspection (Industrial Facilities, etc.)">Inspection (Industrial Facilities, etc.)</option>
             </select>
-            </select>
+            
             <br>
             <label for="visit_duration">Visit Duration: </label>
             <select name="visit_duration" id = "visit_duration" required>
