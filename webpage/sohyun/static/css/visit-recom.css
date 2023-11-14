@@ -2,6 +2,8 @@ body {
   margin: 0;
   padding: 0;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 .statics-chart {
 
@@ -9,8 +11,8 @@ body {
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  width: 970px;
-  height:650px;
+  width: 570px;
+  height:420px;
 } 
 
 center-item {

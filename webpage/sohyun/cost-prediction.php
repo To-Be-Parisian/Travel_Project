@@ -20,6 +20,9 @@ $sql = "SELECT u.sex, u.age, u.country, ui.purpose, ui.period
 // Prepare statement
 $stmt = $conn->prepare($sql);
 
+// Bind the parameters. 여기서 $_SESSION['user_id']는 로그인된 사용자의 ID를 나타냅니다.
+$stmt->bind_param("i", $_SESSION['user_id']);
+
 // Execute the statement
 $stmt->execute();
 
@@ -91,14 +94,14 @@ var expenseChart = new Chart(expenseCtx, {
     data: {
         labels: genders,
         datasets: [{
-            label: '1인당 여행 경비 평균',
+            label: 'Expense Per Person',
             data: avgPerPersonData,
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
         },
         {
-            label: '1일당 여행 경비 평균',
+            label: 'Expense Per Day',
             data: avgPerDayData,
             backgroundColor: 'rgba(54, 162, 235, 0.5)',
             borderColor: 'rgba(54, 162, 235, 1)',
