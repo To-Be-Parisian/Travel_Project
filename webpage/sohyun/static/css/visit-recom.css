@@ -14,6 +14,16 @@ body {
   width: 570px;
   height:420px;
 } 
+.statics-chart-margin {
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  margin-left: 100px;
+  width: 570px;
+  height:420px;
+} 
 
 center-item {
   display: flex;

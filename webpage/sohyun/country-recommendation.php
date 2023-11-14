@@ -59,16 +59,22 @@ $conn->close();
     <title>Data Visualization</title>
     <!-- Chart.js CDN 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./static/css/home.css">
     <link href="/static/css/visit-recom.css" rel="stylesheet" />
     <link href="/static/css/text-style.css" rel="stylesheet" />
 </head>
 <body>
-
+<h1>To Be Parsian</h1>
+  <?php
+        $currentPage = 'country-recommendations'; // 현재 페이지 식별자
+        include 'nav.php';
+    ?>    
+<h1>Statistics Based On Country</h1>
 <?php foreach ($airportData as $country => $airports): ?>
     <h2>Distribution of arrival airports by country : <?php 
     echo $country; ?></h2>
     <center-item>
-    <div class="statics-chart">
+    <div class="statics-chart-margin">
         <canvas id="airportChart<?php echo $country; ?>" width="400" height="200"></canvas>
     </div>
     </center-item>

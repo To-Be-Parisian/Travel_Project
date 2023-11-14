@@ -79,6 +79,5 @@ $conn->close();
         });
     </script>
 <?php endforeach; ?>
-<?php include './country-recommendation.php'; ?>
 </body>
 </html>
