@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO user_input (UserID, purpose , period) VALUES ('".$ID."', '".$travel_purpose."', '".$visit_duration."')";
 
         if ($db->query($sql) === TRUE) {
-            echo "<script> location.href='home.php';</script>";
+            header("Location: home.php");
         } else {
             echo "error: " . $sql . "<br>" . $db->error;
         }
@@ -47,34 +47,33 @@ $db->close();
         <br>
             <label for="travel_purpose">Travel Purpose: </label>
             <select name="travel_purpose" required>
-                <option value="Culinary">Culinary Tourism</option>
+                <option value="Culinary Tourism">Culinary Tourism</option>
                 <option value="Shopping">Shopping</option>
-                <option value="Scenic">Scenic Views</option>
-                <option value="Historical">Visit Palaces/Historical Sites</option>
-                <option value="CulturalExperience">Cultural Experience</option>
-                <option value="Museum">Museum, Exhibition Visit</option>
-                <option value="KPOP">K-POP/Hallyu Performance</option>
-                <option value="Drama">Visit Drama/Film Shooting Locations</option>
-                <option value="Performance">Theater, Musical, Ballet, etc.</option>
-                <option value="LocalFestival">Participate in Local Festivals</option>
-                <option value="Entertainment">Entertainment/Leisure</option>
-                <option value="BeautyMedical">Beauty/Medical Tourism</option>
-                <option value="Sports">Sports/Recreation</option>
-                <option value="Business">Business Activities</option>
-                <option value="Training">Training/Education/Research</option>
-                <option value="Inspection">Inspection (Industrial Facilities, etc.)</option>
-                <!-- Add more options as needed -->
+                <option value="Enjoying Natural Scenery">Scenic Views</option>
+                <option value="Visit to Palaces/Historical Sites">Visit Palaces/Historical Sites</option>
+                <option value="Experience Traditional Culture">Cultural Experience</option>
+                <option value="Visit to Museums and Exhibitions">Museum, Exhibition Visit</option>
+                <option value="Visit to K-POP/Hallyu Star-related Performances">K-POP/Hallyu Performance</option>
+                <option value="Visit to Drama/Movie Shooting Locations">Visit Drama/Film Shooting Locations</option>
+                <option value="Watching Performances such as Theater, Musicals, Ballet, and Participating in Local Festivals">Theater, Musical, Ballet, etc.</option>
+                <option value="Participating in Local Festivals">Participate in Local Festivals</option>
+                <option value="Entertainment/Recreation">Entertainment/Leisure</option>
+                <option value="Beauty/Medical Tourism">Beauty/Medical Tourism</option>
+                <option value="Sports/Recreation Watching and Participation Business Activities">Sports/Recreation</option>
+                <option value="Sports/Recreation Watching and Participation Business Activities">Business Activities</option>
+                <option value="Training/Education/Research">Training/Education/Research</option>
+                <option value="Inspection (Industrial Facilities, etc.)">Inspection (Industrial Facilities, etc.)</option>
             </select>
             </select>
             <br>
             <label for="visit_duration">Visit Duration: </label>
             <select name="visit_duration" required>
-                <option value="1~3">1~3 days</option>
-                <option value="4~7">4~7 days</option>
-                <option value="8~10">8~10 days</option>
-                <option value="11~30">11~30 days</option>
-                <option value="61~90">61~90 days</option>
-                <option value="91">More than 90 days</option>
+                <option value="1~3days">1~3 days</option>
+                <option value="4~7days">4~7 days</option>
+                <option value="8~10days">8~10 days</option>
+                <option value="11~30days">11~30 days</option>
+                <option value="61~90days">61~90 days</option>
+                <option value="Over 90 days">More than 90 days</option>
             </select>
         <br>
 
