@@ -13,8 +13,9 @@
     <h1>To Be Parsian</h1>
     <!-- 네비게이션 바 -->
     <?php
-        $currentPage = 'satisfaction'; // 현재 페이지 식별자
+        $currentPage = 'home'; // 현재 페이지 식별자
         include 'nav.php';
     ?>
+    <?php include './cost-prediction.php'; ?>
 </body>
 </html>
