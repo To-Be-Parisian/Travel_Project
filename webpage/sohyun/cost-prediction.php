@@ -1,16 +1,9 @@
 <?php
-session_start();
-$servername = "localhost";
-$username = "root";
-$password = "thgus201";
-$dbname = "php";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+include "db.php"; // 데이터베이스 연결 설정 파일
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
 }
 
 // Get user details from user and user_input tables
@@ -20,7 +13,7 @@ $sql = "SELECT u.sex, u.age, u.country, ui.purpose, ui.period
         WHERE u.ID = ?"; // Add a condition to match the user ID
 
 // Prepare statement
-$stmt = $conn->prepare($sql);
+$stmt = $db->prepare($sql);
 
 // Bind the parameters. Here $_SESSION['userid'] is the user ID.
 $stmt->bind_param("i", $_SESSION['userid']);
@@ -41,16 +34,20 @@ $stmt->bind_result($gender, $age, $country, $purpose, $period);
 if ($stmt->fetch()) {
     // Prepare the SQL statement for travel_info with JOIN
     $sql_travel = "SELECT ti.avg_expense_per_person, ti.avg_expense_per_day 
-                   FROM travel_info ti
-                   JOIN user u ON ti.gender = u.sex
-                   AND ti.age = u.age
-                   AND ti.country_of_origin = u.country
-                   AND ti.main_activity = ui.purpose
-                   AND ti.visit_duration = ui.period
-                   WHERE u.ID = ?";
+    FROM travel_info ti
+    JOIN user u ON ti.gender = u.sex
+    AND ti.age = u.age
+    AND ti.country_of_origin = u.country
+    JOIN user_input ui ON u.ID = ui.UserID  -- Add this line to join user_input
+    AND ti.main_activity = ui.purpose
+    AND ti.visit_duration = ui.period
+    WHERE u.ID = ?";
+
+    // Close the statement for the main query
+    $stmt->close();
 
     // Prepare statement for travel_info
-    $stmt_travel = $conn->prepare($sql_travel);
+    $stmt_travel = $db->prepare($sql_travel);
     $stmt_travel->bind_param("i", $_SESSION['userid']);
 
     // Print the SQL query for debugging
@@ -68,7 +65,7 @@ if ($stmt->fetch()) {
     // Fetch the data for travel_info
     while ($stmt_travel->fetch()) {
         // Print the result
-        echo "1인당 여행 경비 평균: $avg_per_person, 1일당 여행 경비 평균: $avg_per_day <br>";
+        echo "avg_per_person: $avg_per_person, avg_per_day: $avg_per_day <br>";
     }
 
     // Close the statement for travel_info
@@ -77,11 +74,8 @@ if ($stmt->fetch()) {
     echo "No user data found.";
 }
 
-// Close the statement for the main query
-$stmt->close();
-
 // Close the database connection
-$conn->close();
+$db->close();
 ?>
 
 <!DOCTYPE html>

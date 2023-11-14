@@ -1,12 +1,10 @@
 <?php
-include "./db.php"; // 데이터베이스 연결 설정 파일
+include "db.php"; // 데이터베이스 연결 설정 파일
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
 }
 // 데이터베이스 연결 설정 파일
 // 폼이 제출되었을 때 처리
@@ -22,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO user_input (UserID, purpose, period) VALUES ('".$_SESSION['userid']."', '".$travel_purpose."', '".$visit_duration."')";
 
 
-        if ($conn->query($sql) === TRUE) {
+        if ($db->query($sql) === TRUE) {
             echo "<script> location.href='home.php';</script>";
         } else {
             echo "error: " . $sql . "<br>" . $db->error;
@@ -34,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // 데이터베이스 연결 종료
-$conn->close();
+$db->close();
 ?>
 
 <!DOCTYPE html>
