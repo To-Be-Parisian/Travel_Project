@@ -1,0 +1,11 @@
+flex-body-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.statics-chart {
+  width: 570px;
+  height:450px;
+  margin: 50px;
+}
