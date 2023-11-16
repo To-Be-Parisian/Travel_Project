@@ -1,5 +1,5 @@
-create database php;
-use php;
+create database team07;
+use team07;
 
 CREATE TABLE user (
     ID INT PRIMARY KEY,
