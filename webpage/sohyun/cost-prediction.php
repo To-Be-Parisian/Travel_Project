@@ -1,25 +1,26 @@
 <?php
 include "db.php"; // 데이터베이스 연결 설정 파일
 
+if (!isset($_SESSION['userid'])) {
+    die("User not logged in.");
+}
+
 // Check connection
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
 // Get user details from user and user_input tables
-$sql = "SELECT u.sex, u.age, u.country, ui.purpose, ui.period 
+$sql = "SELECT ui.purpose
         FROM user u 
         INNER JOIN user_input ui ON u.ID = ui.UserID 
-        WHERE u.ID = ?"; // Add a condition to match the user ID
+        WHERE u.ID = ?"; 
 
 // Prepare statement
 $stmt = $db->prepare($sql);
 
-// Bind the parameters. Here $_SESSION['userid'] is the user ID.
+// Bind the parameters
 $stmt->bind_param("i", $_SESSION['userid']);
-
-// Print the user ID for debugging
-echo "User ID: " . $_SESSION['userid'] . "<br>";
 
 // Execute the statement
 if (!$stmt->execute()) {
@@ -35,13 +36,9 @@ if ($stmt->fetch()) {
     // Prepare the SQL statement for travel_info with JOIN
     $sql_travel = "SELECT ti.avg_expense_per_person, ti.avg_expense_per_day 
     FROM travel_info ti
-    JOIN user u ON ti.gender = u.sex
-    AND ti.age = u.age
-    AND ti.country_of_origin = u.country
-    JOIN user_input ui ON u.ID = ui.UserID  -- Add this line to join user_input
+    JOIN user_input ui 
     AND ti.main_activity = ui.purpose
-    AND ti.visit_duration = ui.period
-    WHERE u.ID = ?";
+    WHERE ui.UserID = ?";
 
     // Close the statement for the main query
     $stmt->close();
@@ -49,9 +46,6 @@ if ($stmt->fetch()) {
     // Prepare statement for travel_info
     $stmt_travel = $db->prepare($sql_travel);
     $stmt_travel->bind_param("i", $_SESSION['userid']);
-
-    // Print the SQL query for debugging
-    echo "Debug: SQL query for travel_info: $sql_travel<br>";
 
     // Execute the statement for travel_info
     if (!$stmt_travel->execute()) {
@@ -63,10 +57,7 @@ if ($stmt->fetch()) {
     $stmt_travel->bind_result($avg_per_person, $avg_per_day);
 
     // Fetch the data for travel_info
-    while ($stmt_travel->fetch()) {
-        // Print the result
-        echo "avg_per_person: $avg_per_person, avg_per_day: $avg_per_day <br>";
-    }
+    $stmt_travel->fetch();
 
     // Close the statement for travel_info
     $stmt_travel->close();
@@ -96,18 +87,9 @@ $db->close();
 
     <script>
         // 데이터 가공
-        var genders = [];
-        var avgPerPersonData = [];
-        var avgPerDayData = [];
-
-        <?php
-        // 쿼리 결과로부터 데이터를 추출하여 JavaScript 변수에 할당
-        if ($stmt->fetch()) {
-            echo "genders.push('$gender');";
-            echo "avgPerPersonData.push($avg_per_person);";
-            echo "avgPerDayData.push($avg_per_day);";
-        }
-        ?>
+        var genders = ['<?php echo $gender; ?>'];
+        var avgPerPersonData = ['<?php echo $avg_per_person; ?>'];
+        var avgPerDayData = ['<?php echo $avg_per_day; ?>'];
 
         var expenseCtx = document.getElementById('expenseChart').getContext('2d');
         var expenseChart = new Chart(expenseCtx, {
