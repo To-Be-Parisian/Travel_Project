@@ -1,10 +1,9 @@
 .statics-chart {
-  width: 970px;
-  height:650px;
+  width: 2000px;
+  height:900px;
 } 
 
 center-item {
   display: flex;
   justify-content: center;
-  margin-left: 220px;
 }
