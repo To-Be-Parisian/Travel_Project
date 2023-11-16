@@ -1,5 +1,5 @@
 <?php
-include "db.php"; // 데이터베이스 연결 설정 파일
+include "./db.php"; // 데이터베이스 연결 설정 파일
 
 
 // Check connection
