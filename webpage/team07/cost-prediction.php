@@ -1,4 +1,5 @@
 <?php
+
 include "db.php"; // 데이터베이스 연결 설정 파일
 
 // Check connection
@@ -64,8 +65,13 @@ if ($stmt->fetch()) {
 
     // Fetch the data for travel_info
     while ($stmt_travel->fetch()) {
+    // Check if the values are set
+    if (isset($avg_per_person) && isset($avg_per_day)) {
         // Print the result
         echo "avg_per_person: $avg_per_person, avg_per_day: $avg_per_day <br>";
+    } else {
+        echo "No data found for avg_per_person or avg_per_day.<br>";
+    }
     }
 
     // Close the statement for travel_info

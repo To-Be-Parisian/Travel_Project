@@ -2,8 +2,8 @@
 // 데이터베이스 연결 정보
 $servername = "localhost";
 $username = "root";
-$password = "thgus201";
-$dbname = "php";
+$password = "";
+$dbname = "team07";
 
 // 데이터베이스 연결
 $conn = new mysqli($servername, $username, $password, $dbname);
