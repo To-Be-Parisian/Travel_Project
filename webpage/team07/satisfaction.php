@@ -82,12 +82,16 @@ $conn->close();
     <link href="./static/css/likely.css" rel="stylesheet" />
     <style>
         .satisfaction-title {
-            color: #333;
+            color: #f54242; /* 색상 변경 */
+            font-weight: bold; /* 볼드체 적용 */
             padding-top: 20px;
+            font-size: 30px;
         }
         .satisfaction-content {
             padding: 10px;
+            font-weight: bold;
             background-color: #f8f8f8;
+            font-size: 24px;
             border-radius: 5px;
             margin: 10px 0;
         }
