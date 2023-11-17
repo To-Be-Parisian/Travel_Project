@@ -67,7 +67,7 @@ $conn->close();
     <h2 class="satisfaction-title">Top 5 Locations by Satisfaction Score</h2>
     <div class="satisfaction-content">
         <?php foreach ($locationData as $location): ?>
-            <p>Location: <?= $location['visit_location'] ?>, avg_satisfactio: <?= $location['avg_satisfaction'] ?></p>
+            <p>Location: <?= $location['visit_location'] ?>, avg_satisfaction: <?= $location['avg_satisfaction'] ?></p>
         <?php endforeach; ?>
     </div>
 </div>
