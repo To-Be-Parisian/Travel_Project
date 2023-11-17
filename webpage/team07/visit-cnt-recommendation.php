@@ -41,9 +41,9 @@ $conn->close();
     <title>Data Visualization</title>
     <!-- Chart.js CDN 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="/static/css/text-style.css" rel="stylesheet" />
+    <link href="./static/css/text-style.css" rel="stylesheet" />
     <link rel="stylesheet" href="./static/css/home.css">
-    <link href="/static/css/visit-recom.css" rel="stylesheet" />
+    <link href="./static/css/visit-recom.css" rel="stylesheet" />
     
 </head>
 <body>

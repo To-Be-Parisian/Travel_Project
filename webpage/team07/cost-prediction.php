@@ -48,8 +48,8 @@ if ($db->connect_error) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Expense Visualization</title>
-    <link href="/static/css/text-style.css" rel="stylesheet" />
-    <link href="/static/css/cost-prediction.css" rel="stylesheet" />
+    <link href="./static/css/text-style.css" rel="stylesheet" />
+    <link href="./static/css/cost-prediction.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 

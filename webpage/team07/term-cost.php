@@ -1,5 +1,5 @@
 <?php
-// µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á Á¤º¸
+// ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -30,11 +30,11 @@ $conn->close();
 <head>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <link href="/static/css/home.css" rel="stylesheet" />
+  <link href="./static/css/home.css" rel="stylesheet" />
 
-  <link href="/static/css/term-cost.css" rel="stylesheet" />
+  <link href="./static/css/term-cost.css" rel="stylesheet" />
 
-  <link href="/static/css/text-style.css" rel="stylesheet" />
+  <link href="./static/css/text-style.css" rel="stylesheet" />
 </head>
 <body>
   <h2>Expense Based On Term</h2>

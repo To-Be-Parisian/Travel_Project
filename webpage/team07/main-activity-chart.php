@@ -28,9 +28,9 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Activities and Visit Locations</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="/static/css/text-style.css" rel="stylesheet" />
+    <link href="./static/css/text-style.css" rel="stylesheet" />
     <link rel="stylesheet" href="./static/css/home.css">
-    <link href="/static/css/main-activity.css" rel="stylesheet" />
+    <link href="./static/css/main-activity.css" rel="stylesheet" />
 </head>
 <body>
  <h1>To Be Parsian</h1>

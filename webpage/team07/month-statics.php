@@ -30,9 +30,9 @@ $conn->close();
 <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <link href="/static/css/term-cost.css" rel="stylesheet" />
+  <link href="./static/css/term-cost.css" rel="stylesheet" />
 
-<link href="/static/css/text-style.css" rel="stylesheet" />
+<link href="./static/css/text-style.css" rel="stylesheet" />
 </head>
 <body> 
 <h2>Expense Based On Day</h2>

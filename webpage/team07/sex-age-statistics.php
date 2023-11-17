@@ -6,8 +6,8 @@
     <title>Travel Info Chart</title>
     <!-- Chart.js 라이브러리 추가 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="/static/css/text-style.css" rel="stylesheet" />
-    <link href="/static/css/sex-age.css" rel="stylesheet" />
+    <link href="./static/css/text-style.css" rel="stylesheet" />
+    <link href="./static/css/sex-age.css" rel="stylesheet" />
     <link rel="stylesheet" href="./static/css/home.css">
 </head>
 <body>
