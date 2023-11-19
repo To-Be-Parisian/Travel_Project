@@ -18,7 +18,6 @@ $genderQuery = "SELECT gender, AVG(satisfaction_avg) AS avg_satisfaction
                 FROM travel_like
                 GROUP BY gender";
 $genderResult = $conn->query($genderQuery);
-$genderData = $genderResult->fetch_all(MYSQLI_ASSOC);
 
 $avgSatisfactionByGender = array();
 if ($genderResult->num_rows > 0) {
@@ -32,7 +31,6 @@ $ageQuery = "SELECT age, AVG(satisfaction_avg) AS avg_satisfaction
              FROM travel_like
              GROUP BY age";
 $ageResult = $conn->query($ageQuery);
-$ageData = $ageResult->fetch_all(MYSQLI_ASSOC);
 
 $avgSatisfactionByAge = array();
 if ($ageResult->num_rows > 0) {
@@ -42,14 +40,11 @@ if ($ageResult->num_rows > 0) {
 }
 
 // 방문 위치에 따른 만족도 통계
-$locationQuery = "SELECT visit_location, AVG(satisfaction_avg) AS avg_satisfaction,
-                  RANK() OVER(ORDER BY AVG(satisfaction_avg) DESC) visit_location_rank
+$locationQuery = "SELECT visit_location, AVG(satisfaction_avg) AS avg_satisfaction
                   FROM travel_like
                   GROUP BY visit_location
-                  ORDER BY visit_location_rank
-                  LIMIT 5";
+                  ORDER BY avg_satisfaction DESC";
 $locationResult = $conn->query($locationQuery);
-$locationData = $locationResult->fetch_all(MYSQLI_ASSOC);
 
 $avgSatisfactionByLocation = array();
 if ($locationResult->num_rows > 0) {
@@ -62,16 +57,6 @@ if ($locationResult->num_rows > 0) {
 $conn->close();
 ?>
 
-<div>
-    <!-- 방문 위치에 따른 만족도 상위 5개 데이터 -->
-    <h2 class="satisfaction-title">Top 5 Locations by Satisfaction Score</h2>
-    <div class="satisfaction-content">
-        <?php foreach ($locationData as $location): ?>
-            <p>Location: <?= $location['visit_location'] ?>, avg_satisfaction: <?= $location['avg_satisfaction'] ?></p>
-        <?php endforeach; ?>
-    </div>
-</div>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,18 +64,18 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel Satisfaction Statistics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="./static/css/likely.css" rel="stylesheet" />
+    <link href="/static/css/likely.css" rel="stylesheet" />
     <style>
         .satisfaction-title {
-            color: #f54242; /* 색상 변경 */
-            font-weight: bold; /* 볼드체 적용 */
+            color:  #2c4035; 
+            font-weight: bold; 
             padding-top: 20px;
             font-size: 30px;
         }
         .satisfaction-content {
             padding: 10px;
-            font-weight: bold;
             background-color: #f8f8f8;
+            font-style: italic;
             font-size: 24px;
             border-radius: 5px;
             margin: 10px 0;
@@ -98,7 +83,31 @@ $conn->close();
     </style>
 </head>
 <body>
-
+    <h1>Travel Satisfaction Statistics</h1>
+    <div>
+        <h2 class="satisfaction-title">Top 5 Locations by Satisfaction Score</h2>
+        <?php 
+        $counter = 0;
+        foreach($avgSatisfactionByLocation as $location => $satisfaction): 
+            if($counter++ < 5):
+        ?>
+            <p class="satisfaction-content"><?php echo $location . ': ' . $satisfaction; ?></p>
+        <?php 
+            endif;
+        endforeach; 
+        ?>
+    </div>
+    <flex-body>
+      <!-- 성별에 따른 바 차트 -->
+      <div class="satisfaction-chart">
+        <canvas id="genderChart"></canvas>
+      </div>
+      <div class="satisfaction-chart">
+        <canvas id="ageChart" width="200" height="100"></canvas>
+      </div>
+      <div class="satisfaction-chart">
+        <canvas id="locationChart" width="200" height="100"></canvas>
+    </flex-body>
     <script >
         // PHP에서 가져온 통계 데이터
         var avgSatisfactionByGender = <?php echo json_encode($avgSatisfactionByGender); ?>;
@@ -122,7 +131,33 @@ $conn->close();
                 }
             });
         }
-    </script>                                        
+
+        // 성별에 따른 바 차트 생성
+        createChart('genderChart', 'bar', Object.keys(avgSatisfactionByGender), Object.values(avgSatisfactionByGender), 'rgba(75, 192, 192, 0.2)', 'rgba(75, 192, 192, 1)');
+
+        // 나이에 따른 바 차트 생성
+        createChart('ageChart', 'bar', Object.keys(avgSatisfactionByAge), Object.values(avgSatisfactionByAge), 'rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 1)');
+
+        // 방문 위치에 따른 도넛 차트 생성
+        createChart('locationChart', 'bar', Object.keys(avgSatisfactionByLocation), Object.values(avgSatisfactionByLocation), [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 200, 200, 0.2)',
+            'rgba(200, 200, 255, 0.2)'
+        ], [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 200, 200, 1)',
+            'rgba(200, 200, 255, 1)'
+        ]);
+    </script>
 </body>
 </html>
-
