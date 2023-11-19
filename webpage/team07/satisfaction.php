@@ -40,10 +40,12 @@ if ($ageResult->num_rows > 0) {
 }
 
 // 방문 위치에 따른 만족도 통계
-$locationQuery = "SELECT visit_location, AVG(satisfaction_avg) AS avg_satisfaction
+$locationQuery = "SELECT visit_location, AVG(satisfaction_avg) AS avg_satisfaction,
+                  RANK() OVER(ORDER BY AVG(satisfaction_avg) DESC) visit_location_rank
                   FROM travel_like
                   GROUP BY visit_location
-                  ORDER BY avg_satisfaction DESC";
+                  ORDER BY visit_location_rank
+                  LIMIT 5";
 $locationResult = $conn->query($locationQuery);
 
 $avgSatisfactionByLocation = array();
